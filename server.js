@@ -21,6 +21,17 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.static(join(__dirname, "public")));
 
+// Initialize database then start server
+initDatabase()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Failed to initialize database:", error);
+  });
+
 app.get("/health", async (req, res) => {
   try {
     await pool.query("SELECT 1");
@@ -41,14 +52,3 @@ app.get("/health", async (req, res) => {
 
 // API Routes
 app.use("/api/dreams", dreamsRouter);
-
-// Initialize database then start server
-initDatabase()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.error("Failed to initialize database:", error);
-  });
