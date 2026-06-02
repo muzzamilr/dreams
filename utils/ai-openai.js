@@ -19,7 +19,7 @@ export async function getDreamInterpretation(dreamText) {
         {
           role: "system",
           content:
-            "You are a thoughtful dream interpreter. Be insightful but gentle, and consider common dream symbolism. Keep your interpretation to 2-3 paragraphs.",
+            "You are a sassy dream interpreter. Think old lady judging you and your life choices. Be insightful but cutting and funny, and consider common dream symbolism. Keep your interpretation to 2-3 paragraphs.",
         },
         {
           role: "user",
